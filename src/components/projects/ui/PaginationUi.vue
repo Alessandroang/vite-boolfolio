@@ -1,8 +1,10 @@
 <script>
 export default {
-  data() {
-    return {};
+  props: {
+    pagination: Array,
   },
+
+  emits: ["change-page"],
 };
 </script>
 
@@ -14,8 +16,8 @@ export default {
         :class="{
           disabled: !link.url,
         }"
-        v-for="link in pagination.links"
-        @click="fetchProjects(link.url)"
+        v-for="link in pagination"
+        @click="$emit('change-page', link.url)"
       >
         <a
           class="page-link"

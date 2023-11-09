@@ -1,5 +1,6 @@
 <script>
 import ProjectCard from "./ProjectCard.vue";
+import PaginationUi from "./ui/PaginationUi.vue";
 import axios from "axios";
 import { store } from "../../data/store";
 
@@ -7,14 +8,13 @@ export default {
   data() {
     return {
       projects: [],
-      pagination: {
-        links: [],
-      },
+      pagination: [],
     };
   },
 
   components: {
     ProjectCard,
+    PaginationUi,
   },
 
   methods: {
@@ -27,7 +27,7 @@ export default {
         .get(apiUrl)
         .then((response) => {
           this.projects = response.data.data;
-          this.pagination.links = response.data.links;
+          this.pagination = response.data.links;
         })
         .catch((error) => {
           console.error("Errore nella chiamata API", error);
@@ -42,34 +42,14 @@ export default {
 </script>
 
 <template>
-  <div>
-    <div class="row">
-      <nav aria-label="..." class="my-3">
-        <ul class="pagination">
-          <li
-            class="page-item"
-            :class="{
-              disabled: !link.url,
-            }"
-            v-for="link in pagination.links"
-            @click="fetchProjects(link.url)"
-          >
-            <a
-              class="page-link"
-              :class="{
-                active: link.active,
-              }"
-              href="#"
-              v-html="link.label"
-            ></a>
-          </li>
-        </ul>
-      </nav>
+  <div class="container">
+    <h1>Lista dei Progetti</h1>
+    <PaginationUi :pagination="pagination" @change-page="fetchProjects" />
+    <div class="row row-cols-3 g-4">
       <ProjectCard
         v-for="project in projects"
         :key="project.id"
         :project="project"
-        class="col-md-3 mb-4"
       />
     </div>
   </div>

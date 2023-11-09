@@ -1,4 +1,5 @@
 <script>
+import ContactForm from "./components/ContactForm.vue";
 import ProjectList from "./components/projects/Projectlist.vue";
 
 export default {
@@ -10,13 +11,16 @@ export default {
 
   components: {
     ProjectList,
+    ContactForm,
   },
 };
 </script>
 
 <template>
-  <div class="container mt-4">
-    <h1>Lista dei Progetti</h1>
+  <div class="container mt-4 mb-4">
+    <hr />
+    <ContactForm />
+    <hr />
     <ProjectList :projects="projects" />
   </div>
 </template>
