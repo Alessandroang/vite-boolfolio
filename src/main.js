@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import "./assets/scss/style.scss";
+import { router } from "./router";
 import * as bootstrap from "bootstrap";
 import App from "./App.vue";
 
@@ -15,4 +16,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 /* add icons to the library */
 library.add(faPaperPlane);
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+createApp(App)
+  .use(router)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app");

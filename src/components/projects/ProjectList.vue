@@ -1,6 +1,6 @@
 <script>
 import ProjectCard from "./ProjectCard.vue";
-import PaginationUi from "./ui/PaginationUi.vue";
+import PaginationUi from "../ui/PaginationUi.vue";
 import axios from "axios";
 import { store } from "../../data/store";
 
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container mt-4 mb-4">
     <h1>Lista dei Progetti</h1>
     <PaginationUi :pagination="pagination" @change-page="fetchProjects" />
     <div class="row row-cols-3 g-4">

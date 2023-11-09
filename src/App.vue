@@ -1,6 +1,5 @@
 <script>
-import ContactForm from "./components/ContactForm.vue";
-import ProjectList from "./components/projects/Projectlist.vue";
+import NavbarUi from "./components/ui/NavbarUi.vue";
 
 export default {
   data() {
@@ -10,17 +9,13 @@ export default {
   },
 
   components: {
-    ProjectList,
-    ContactForm,
+    NavbarUi,
   },
 };
 </script>
 
 <template>
-  <div class="container mt-4 mb-4">
-    <hr />
-    <ContactForm />
-    <hr />
-    <ProjectList :projects="projects" />
-  </div>
+  <NavbarUi />
+
+  <router-view></router-view>
 </template>
