@@ -2,12 +2,13 @@
 export default {
   props: {
     project: Object,
+    isDetail: Boolean,
   },
 
   computed: {
     abstract() {
-      let strend = this.project.lenght > 100 ? "..." : "";
-      return this.project.content.substr(0, 120) + strend;
+      let strend = this.project.length > 100 ? "..." : "";
+      return this.project.content.substr(0, 150) + strend;
     },
   },
 };
@@ -23,17 +24,24 @@ export default {
           >{{ project.type.label }}</span
         >
       </div>
-      <div class="card-body">
+      <div class="card-body clearfix">
         <h5 class="card-title">{{ project.title }}</h5>
         <div v-if="project && project.image">
           <img
             :src="project.image"
-            class="img-fluid w-50"
+            class="img-fluid mb-1 rounded w-50"
+            :class="{
+              'float-end': isDetail,
+              'w-50': isDetail,
+              'ms-1': isDetail,
+            }"
             alt="Project Image"
           />
         </div>
 
-        <p class="card-text">{{ abstract }}</p>
+        <p class="card-text">
+          {{ isDetail ? project.content : abstract }}
+        </p>
 
         <span
           class="badge mx-1"
@@ -43,8 +51,19 @@ export default {
           >{{ technology.label }}</span
         >
       </div>
+
       <div class="card-footer">
-        <button class="btn btn-primary">Vedi i dettagli</button>
+        <router-link
+          v-if="!isDetail"
+          :to="{
+            name: 'project-detail',
+            params: {
+              id: project.id,
+            },
+          }"
+        >
+          <button class="btn btn-primary">Vedi Dettaglio</button>
+        </router-link>
       </div>
     </div>
   </div>

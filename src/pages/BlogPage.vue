@@ -1,5 +1,5 @@
 <script>
-import ProjectList from "../components/projects/Projectlist.vue";
+import ProjectList from "../components/projects/ProjectList.vue";
 
 export default {
   data() {

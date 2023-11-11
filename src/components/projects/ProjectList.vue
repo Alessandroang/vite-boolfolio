@@ -48,6 +48,7 @@ export default {
     <div class="row row-cols-3 g-4">
       <ProjectCard
         v-for="project in projects"
+        :isDetail="false"
         :key="project.id"
         :project="project"
       />
